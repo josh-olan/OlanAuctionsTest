@@ -28,14 +28,8 @@ namespace OlanAuctions.GetDriver
             }
         }
 
-        private IWebDriver GetChromeDriver()
-        {
-            return new ChromeDriver(FilePath);
-        }
+        private IWebDriver GetChromeDriver() => new WebListener(new ChromeDriver(FilePath)).Driver;
 
-        private IWebDriver GetEdgeDriver()
-        {
-            return new EdgeDriver(FilePath);
-        }
+        private IWebDriver GetEdgeDriver() => new WebListener(new EdgeDriver(FilePath)).Driver;
     }
 }

@@ -11,7 +11,6 @@ namespace OlanAuctions.Pages.PageMethods
     class RegisterPage : Base
     {
         public RegisterPage(IWebDriver driver) : base(driver) { }
-
         internal LoginPage ClickLoginHereLink()
         {
             Driver.FindElement(RegisterPageConstants.LOGIN_HERE_LINK).Click();

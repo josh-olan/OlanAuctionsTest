@@ -22,8 +22,7 @@ namespace OlanAuctions.Tests
         [TestInitialize]
         public void RunBeforeEachTest()
         {
-            WebDriverFactory factory = new WebDriverFactory();
-            Driver = factory.Create(BrowserType.Chrome);
+            Driver = new WebDriverFactory().Create(BrowserType.Chrome);
             loginPage = new LoginPage(Driver);
             loginPage.GoTo();
         }

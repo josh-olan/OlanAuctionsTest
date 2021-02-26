@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OlanAuctions.GetDriver;
 using OlanAuctions.Pages.PageConstants;
 using OpenQA.Selenium;
 
@@ -11,28 +12,24 @@ namespace OlanAuctions.Pages.PageMethods
     class LoginPage : Base
     {
         public LoginPage(IWebDriver driver) : base(driver) { }
-
         public bool IsIncorrectUsernamePasswordMessageDisplayed => Driver.FindElement(LoginPageConstants.ERROR_MESSAGE).Displayed;
         public bool IsPageDisplayed => Driver.Title == "Login";
 
         public LoginPage ClickActiveListingsLink() 
         {
             Driver.FindElement(LoginPageConstants.ACTIVE_LISTINGS_LINK).Click();
-            Wait.UntilPageIsDisplayed();
             return new LoginPage(Driver);
         }
 
         internal LoginPage ClickLoginLink()
         {
             Driver.FindElement(LoginPageConstants.LOG_IN_LINK).Click();
-            Wait.UntilPageIsDisplayed();
             return new LoginPage(Driver);
         }
 
         internal RegisterPage ClickRegisterHereLink()
         {
             Driver.FindElement(LoginPageConstants.REGISTER_HERE_LINK).Click();
-            Wait.UntilPageIsDisplayed();
             return new RegisterPage(Driver);
         }
 
@@ -40,7 +37,6 @@ namespace OlanAuctions.Pages.PageMethods
         {
             Driver.Navigate().GoToUrl("http://olan-auctions.herokuapp.com");
             Driver.Manage().Window.Maximize();
-            Wait.UntilPageIsDisplayed();
         }
 
         public ActiveListingsPage FillOutFormAndSubmit(string username, string password)
@@ -52,7 +48,6 @@ namespace OlanAuctions.Pages.PageMethods
             passwordField.Clear();
             passwordField.SendKeys(password);
             Driver.FindElement(LoginPageConstants.LOGIN_BUTTON).Click();
-            Wait.UntilPageIsDisplayed();
             return new ActiveListingsPage(Driver);
         }
     }

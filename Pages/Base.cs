@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
 using OlanAuctions.Helpers;
+using OlanAuctions.GetDriver;
 
 namespace OlanAuctions.Pages
 {
@@ -17,10 +18,11 @@ namespace OlanAuctions.Pages
     {
         protected IWebDriver Driver { get; set; }
         protected Wait Wait => new Wait(Driver);
+        protected UA UA => new UA(Driver);
+        protected IJavaScriptExecutor GetJavaScriptExecutor => (IJavaScriptExecutor)Driver;
         public Base(IWebDriver driver)
         {
             Driver = driver;
         }
-
     }
 }

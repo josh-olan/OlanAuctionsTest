@@ -15,19 +15,14 @@ namespace OlanAuctions.ExcelData
 {
     class ExcelFile
     {
-        private string FileName { get; set; }
         private Application excelFile;
         private Workbook workbook;
         private Worksheet worksheet;
 
         public ExcelFile(int sheetIndex = 1, string fileName = "OlanAuctionsTest.xlsx")
         {
-            FileName = fileName;
-            //var filePath = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), $@"ExcelData\{FileName}");
-            var filePath = $@"{Directory.GetCurrentDirectory()}\ExcelData\{FileName}";
+            var filePath = $@"{Directory.GetCurrentDirectory()}\ExcelData\{fileName}";
             excelFile = new Application();
-            //excelFile.Visible = true;
-            //Thread.Sleep(2000);
             workbook = excelFile.Workbooks.Open(filePath);
             worksheet = workbook.Worksheets[sheetIndex];
         }

@@ -12,33 +12,28 @@ namespace OlanAuctions.Helpers
     public class Wait : Base
     {
         public Wait(IWebDriver driver) : base(driver) { }
-
         public void UntilPageIsDisplayed()
         {
-            GetWait(Driver, TimeLength.TwentySecondsWait).Until((d) =>
+            new WebDriverWait(Driver, TimeLength.TwentySecondsWait).Until((d) =>
             {
-                return GetJavaScriptExecutor(Driver).ExecuteScript("return document.readyState == 'complete';");
+                return GetJavaScriptExecutor.ExecuteScript("return document.readyState == 'complete';");
             });
         }
 
         public void UntilElementIsPresent(By locatorString)
         {
-            GetWait(Driver, TimeLength.TenSecondsWait).Until((d) =>
+            new WebDriverWait(Driver, TimeLength.TenSecondsWait).Until((d) =>
             {
                 return d.FindElement(locatorString);
             });
         }
 
-        /* Returns an instance of the WebDriverWait class
-         * @params: IWebDriver object, Timespan object
-         * @return: new WebDriverWait object
-         */
-        private WebDriverWait GetWait(IWebDriver driver, TimeSpan time) => new WebDriverWait(driver, time);
-
-        /*Returns the IJavaScript Executor interface
-         * @params: IWebDriver object
-         * @returns: IJavaScriptExecutor interface
-         */
-        private IJavaScriptExecutor GetJavaScriptExecutor(IWebDriver driver) => (IJavaScriptExecutor)driver; 
+        public void UntilElementIsDisplayed(IWebElement element)
+        {
+            new WebDriverWait(Driver, TimeLength.TenSecondsWait).Until((d) =>
+            {
+                return GetJavaScriptExecutor.ExecuteScript("return window.getComputedStyle(arguments[0]).display != false;", element);
+            });
+        }
     }
 }
