@@ -12,14 +12,10 @@ namespace OlanAuctions.Helpers
     public class UA : Base
     {
         public UA(IWebDriver driver) : base(driver) { }
-        public void HighlightElement(IWebElement element)
+
+        public void ScrollIntoViewIfNeeded(IWebElement element)
         {
             Wait.UntilElementIsDisplayed(element);
-            ScrollIntoViewIfNeeded(element);
-        }
-
-        private void ScrollIntoViewIfNeeded(IWebElement element)
-        {
             GetJavaScriptExecutor.ExecuteScript("return arguments[0].scrollIntoViewIfNeeded();", element);
         }
     }

@@ -45,6 +45,7 @@ namespace OlanAuctions.Pages.PageMethods
                     currentPrice = item_price;
                 else
                 {
+                    UA.ScrollIntoViewIfNeeded(element);
                     switch (order)
                     {
                         case Order.LowestToHighest:
